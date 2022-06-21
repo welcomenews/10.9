@@ -3,7 +3,7 @@
 ```
 $ apt install py-pip
 $ python3 -m venv venv
-$ source venv / bin / activate
+$ source venv /bin/activate
 $ pip install setuptools testinfra
 ```
 
