@@ -1,10 +1,11 @@
-### Install
+#### Install pytest
 
+```
 $ apt install py-pip
 $ python3 -m venv venv
 $ source venv / bin / activate
 $ pip install setuptools testinfra
-
+```
 
 ```
 /etc/nginx/test # pytest test.py 
