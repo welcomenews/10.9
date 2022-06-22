@@ -1,0 +1,133 @@
+sergey@elk:~/Temp/10.9/roles/myrole$ molecule lint
+INFO     default scenario test matrix: dependency, lint
+INFO     Performing prerun with role_name_check=0...
+INFO     Set ANSIBLE_LIBRARY=/home/sergey/.cache/ansible-compat/a8f7d1/modules:/home/sergey/.ansible/plugins/modules:/usr/share/ansible/plugins/modules
+INFO     Set ANSIBLE_COLLECTIONS_PATH=/home/sergey/.cache/ansible-compat/a8f7d1/collections:/home/sergey/.ansible/collections:/usr/share/ansible/collections
+INFO     Set ANSIBLE_ROLES_PATH=/home/sergey/.cache/ansible-compat/a8f7d1/roles:/home/sergey/.ansible/roles:/usr/share/ansible/roles:/etc/ansible/roles
+INFO     Using /home/sergey/.cache/ansible-compat/a8f7d1/roles/acme.myrole symlink to current repository in order to enable Ansible to find the role using its expected full name.
+INFO     Running default > dependency
+WARNING  Skipping, missing the requirements file.
+WARNING  Skipping, missing the requirements file.
+INFO     Running default > lint
+
+
+
+sergey@elk:~/Temp/10.9/roles/myrole$ molecule test
+INFO     default scenario test matrix: dependency, lint
+INFO     Performing prerun with role_name_check=0...
+INFO     Set ANSIBLE_LIBRARY=/home/sergey/.cache/ansible-compat/a8f7d1/modules:/home/sergey/.ansible/plugins/modules:/usr/share/ansible/plugins/modules
+INFO     Set ANSIBLE_COLLECTIONS_PATH=/home/sergey/.cache/ansible-compat/a8f7d1/collections:/home/sergey/.ansible/collections:/usr/share/ansible/collections
+INFO     Set ANSIBLE_ROLES_PATH=/home/sergey/.cache/ansible-compat/a8f7d1/roles:/home/sergey/.ansible/roles:/usr/share/ansible/roles:/etc/ansible/roles
+INFO     Using /home/sergey/.cache/ansible-compat/a8f7d1/roles/acme.myrole symlink to current repository in order to enable Ansible to find the role using its expected full name.
+INFO     Running default > dependency
+WARNING  Skipping, missing the requirements file.
+WARNING  Skipping, missing the requirements file.
+INFO     Running default > lint
+sergey@elk:~/Temp/10.9/roles/myrole$ molecule test
+INFO     default scenario test matrix: dependency, lint, cleanup, destroy, syntax, create, prepare, converge, idempotence, side_effect, verify, cleanup, destroy
+INFO     Performing prerun with role_name_check=0...
+INFO     Set ANSIBLE_LIBRARY=/home/sergey/.cache/ansible-compat/a8f7d1/modules:/home/sergey/.ansible/plugins/modules:/usr/share/ansible/plugins/modules
+INFO     Set ANSIBLE_COLLECTIONS_PATH=/home/sergey/.cache/ansible-compat/a8f7d1/collections:/home/sergey/.ansible/collections:/usr/share/ansible/collections
+INFO     Set ANSIBLE_ROLES_PATH=/home/sergey/.cache/ansible-compat/a8f7d1/roles:/home/sergey/.ansible/roles:/usr/share/ansible/roles:/etc/ansible/roles
+INFO     Using /home/sergey/.cache/ansible-compat/a8f7d1/roles/acme.myrole symlink to current repository in order to enable Ansible to find the role using its expected full name.
+INFO     Running default > dependency
+WARNING  Skipping, missing the requirements file.
+WARNING  Skipping, missing the requirements file.
+INFO     Running default > lint
+INFO     Running default > cleanup
+WARNING  Skipping, cleanup playbook not configured.
+INFO     Running default > destroy
+INFO     Sanity checks: 'docker'
+
+PLAY [Destroy] *****************************************************************
+
+TASK [Populate instance config] ************************************************
+ok: [localhost]
+
+TASK [Dump instance config] ****************************************************
+skipping: [localhost]
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=1    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0
+
+INFO     Running default > syntax
+
+playbook: /home/sergey/Temp/10.9/roles/myrole/molecule/default/converge.yml
+INFO     Running default > create
+
+PLAY [Create] ******************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [localhost]
+
+TASK [Populate instance config dict] *******************************************
+skipping: [localhost]
+
+TASK [Convert instance config dict to a list] **********************************
+skipping: [localhost]
+
+TASK [Dump instance config] ****************************************************
+skipping: [localhost]
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=1    changed=0    unreachable=0    failed=0    skipped=3    rescued=0    ignored=0
+
+INFO     Running default > prepare
+WARNING  Skipping, prepare playbook not configured.
+INFO     Running default > converge
+
+PLAY [Converge] ****************************************************************
+
+TASK [Include acme.myrole] *****************************************************
+
+TASK [acme.myrole : My-Role | Update and upgrade apt packages] *****************
+fatal: [instance]: UNREACHABLE! => {"changed": false, "msg": "Failed to create temporary directory. In some cases, you may have been able to authenticate and did not have permissions on the target directory. Consider changing the remote tmp path in ansible.cfg to a path rooted in \"/tmp\", for more error information use -vvv. Failed command was: ( umask 77 && mkdir -p \"` echo ~/.ansible/tmp `\"&& mkdir \"` echo ~/.ansible/tmp/ansible-tmp-1655907365.4318419-10139-234058387028508 `\" && echo ansible-tmp-1655907365.4318419-10139-234058387028508=\"` echo ~/.ansible/tmp/ansible-tmp-1655907365.4318419-10139-234058387028508 `\" ), exited with result 1", "unreachable": true}
+
+PLAY RECAP *********************************************************************
+instance                   : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0
+
+WARNING  Retrying execution failure 4 of: ansible-playbook --inventory /home/sergey/.cache/molecule/myrole/default/inventory --skip-tags molecule-notest,notest /home/sergey/Temp/10.9/roles/myrole/molecule/default/converge.yml
+CRITICAL Ansible return code was 4, command was: ['ansible-playbook', '--inventory', '/home/sergey/.cache/molecule/myrole/default/inventory', '--skip-tags', 'molecule-notest,notest', '/home/sergey/Temp/10.9/roles/myrole/molecule/default/converge.yml']
+WARNING  An error occurred during the test sequence action: 'converge'. Cleaning up.
+INFO     Running default > cleanup
+WARNING  Skipping, cleanup playbook not configured.
+INFO     Running default > destroy
+
+PLAY [Destroy] *****************************************************************
+
+TASK [Populate instance config] ************************************************
+ok: [localhost]
+
+TASK [Dump instance config] ****************************************************
+skipping: [localhost]
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=1    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0
+
+INFO     Pruning extra files from scenario ephemeral directory
+
+
+sergey@elk:~/Temp/10.9/roles/myrole$ molecule verify
+INFO     default scenario test matrix: verify
+INFO     Performing prerun with role_name_check=0...
+INFO     Set ANSIBLE_LIBRARY=/home/sergey/.cache/ansible-compat/a8f7d1/modules:/home/sergey/.ansible/plugins/modules:/usr/share/ansible/plugins/modules
+INFO     Set ANSIBLE_COLLECTIONS_PATH=/home/sergey/.cache/ansible-compat/a8f7d1/collections:/home/sergey/.ansible/collections:/usr/share/ansible/collections
+INFO     Set ANSIBLE_ROLES_PATH=/home/sergey/.cache/ansible-compat/a8f7d1/roles:/home/sergey/.ansible/roles:/usr/share/ansible/roles:/etc/ansible/roles
+INFO     Using /home/sergey/.cache/ansible-compat/a8f7d1/roles/acme.myrole symlink to current repository in order to enable Ansible to find the role using its expected full name.
+INFO     Running default > verify
+INFO     Running Ansible Verifier
+INFO     Sanity checks: 'docker'
+
+PLAY [Verify] ******************************************************************
+
+TASK [Example assertion] *******************************************************
+ok: [instance] => {
+    "changed": false,
+    "msg": "All assertions passed"
+}
+
+PLAY RECAP *********************************************************************
+instance                   : ok=1    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+INFO     Verifier completed successfully.
+
