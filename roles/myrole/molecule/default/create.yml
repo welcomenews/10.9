@@ -3,7 +3,7 @@
   hosts: localhost
   connection: local
   gather_facts: True
-  no_log: false 
+  no_log: false
  #  no_log: "{{ molecule_no_log }}"
   tasks:
 
