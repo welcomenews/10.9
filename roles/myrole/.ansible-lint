@@ -1,0 +1,4 @@
+---
+use_default_rules: true
+skip_list:
+  - '503'  # [E503] Tasks that run when changed should likely be handlers

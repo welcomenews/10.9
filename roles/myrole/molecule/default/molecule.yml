@@ -3,7 +3,7 @@ molecule:
   ignore_paths:
     - venv
 lint:
-  name: yamllint .
+  name: yamllint
 dependency:
   name: galaxy
 driver:
@@ -17,6 +17,6 @@ provisioner:
   log: true
 lint: |
   set -e
-  ansible-lint --force-color
+  ansible-lint
 verifier:
   name: ansible
