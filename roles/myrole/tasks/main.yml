@@ -1,0 +1,15 @@
+---
+# tasks file for my-role
+- name: My-Role | Update and upgrade apt packages
+  ansible.builtin.apt:
+    name: "*"
+    update_cache: yes
+    state: latest
+
+- name: My-Role | Install additional packages
+  ansible.builtin.apt:
+    name: "{{ installed_packages }}"
+    state: latest
+  vars:
+    installed_packages:
+      - nginx
